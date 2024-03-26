@@ -15,8 +15,8 @@ const ControlLabel = styled.label`
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${({ invalid }) => {
-    return invalid ? "#f87171" : "#6b7280";
+  color: ${({ $invalid }) => {
+    return $invalid ? "#f87171" : "#6b7280";
   }};
 `;
 
@@ -24,8 +24,8 @@ const ControlInput = styled.input`
   width: 100%;
   padding: 0.75rem 1rem;
   line-height: 1.5;
-  ${({ invalid }) => {
-    return invalid
+  ${({ $invalid }) => {
+    return $invalid
       ? "color: #ef4444; border-color: #f73f3f; background-color: #fed2d2;"
       : "color: #374151; border-color: transparent;  background-color: #d1d5db;";
   }};
@@ -58,18 +58,18 @@ export default function AuthInputs() {
     <div id="auth-inputs">
       <ControlContainer>
         <p>
-          <ControlLabel invalid={emailNotValid}>Email</ControlLabel>
+          <ControlLabel $invalid={emailNotValid}>Email</ControlLabel>
           <ControlInput
             type="email"
-            invalid={emailNotValid}
+            $invalid={emailNotValid}
             onChange={(event) => handleInputChange("email", event.target.value)}
           />
         </p>
         <p>
-          <ControlLabel invalid={emailNotValid}>Password</ControlLabel>
+          <ControlLabel $invalid={passwordNotValid}>Password</ControlLabel>
           <ControlInput
             type="password"
-            invalid={emailNotValid}
+            $invalid={passwordNotValid}
             onChange={(event) =>
               handleInputChange("password", event.target.value)
             }
