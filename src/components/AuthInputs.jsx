@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { styled } from "styled-components";
+import Button from "./Button";
+import CustomInput from "./CustomInput";
 
 const ControlContainer = styled.div`
   display: flex;
@@ -7,32 +9,6 @@ const ControlContainer = styled.div`
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 `;
-
-const ControlLabel = styled.label`
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: ${({ $invalid }) => {
-    return $invalid ? "#f87171" : "#6b7280";
-  }};
-`;
-
-const ControlInput = styled.input`
-  width: 100%;
-  padding: 0.75rem 1rem;
-  line-height: 1.5;
-  ${({ $invalid }) => {
-    return $invalid
-      ? "color: #ef4444; border-color: #f73f3f; background-color: #fed2d2;"
-      : "color: #374151; border-color: transparent;  background-color: #d1d5db;";
-  }};
-  border: 1px solid ;
-  border-radius: 0.25rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-}`;
 
 export default function AuthInputs() {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -58,16 +34,16 @@ export default function AuthInputs() {
     <div id="auth-inputs">
       <ControlContainer>
         <p>
-          <ControlLabel $invalid={emailNotValid}>Email</ControlLabel>
-          <ControlInput
+          <CustomInput
+            label="Email"
             type="email"
             $invalid={emailNotValid}
             onChange={(event) => handleInputChange("email", event.target.value)}
           />
         </p>
         <p>
-          <ControlLabel $invalid={passwordNotValid}>Password</ControlLabel>
-          <ControlInput
+          <CustomInput
+            label="Password"
             type="password"
             $invalid={passwordNotValid}
             onChange={(event) =>
@@ -80,9 +56,7 @@ export default function AuthInputs() {
         <button type="button" className="text-button">
           Create a new account
         </button>
-        <button className="button" onClick={handleLogin}>
-          Sign In
-        </button>
+        <Button onClick={handleLogin}>Sign In</Button>
       </div>
     </div>
   );
