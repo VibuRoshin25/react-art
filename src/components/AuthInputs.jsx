@@ -7,17 +7,17 @@ export default function AuthInputs() {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  function handleInputChange(identifier, value) {
+  const handleInputChange = (identifier, value) => {
     if (identifier === "email") {
       setEnteredEmail(value);
     } else {
       setEnteredPassword(value);
     }
-  }
+  };
 
-  function handleLogin() {
+  const handleLogin = () => {
     setSubmitted(true);
-  }
+  };
 
   const emailNotValid = submitted && !enteredEmail.includes("@");
   const passwordNotValid = submitted && enteredPassword.trim().length < 6;
